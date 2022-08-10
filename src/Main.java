@@ -11,6 +11,7 @@ public class Main {
         analyzer.findFirstOldest( getDevelopmentDepartment(),34 );
         analyzer.getAverageSalary( getMarketingDepartment() ) ;
         analyzer.findCommonNames( getHrDepartment(), getDevelopmentDepartment() );
+        System.out.println(analyzer.commonNamesSetList(getHrDepartment(), getDevelopmentDepartment() )); //with Set
 
     }
 }

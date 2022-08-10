@@ -1,6 +1,7 @@
 import employee.Employee;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class EmployeeAnalyzer {
 
@@ -22,7 +23,7 @@ public class EmployeeAnalyzer {
 
     public void findOldestEmployees(List<Employee> department, long howMany){
         System.out.printf("Most Senior %s Employees :\n" , howMany);
-        department.stream().sorted( (a,b) -> b.getAge() - a.getAge())
+        department.stream().sorted( (a,b) -> b.getAge() - a.getAge() )
                 .limit(howMany).forEach( e -> System.out.println( e.getFullName()));
         System.out.println("-----");
     }
@@ -64,6 +65,14 @@ public class EmployeeAnalyzer {
             {System.out.println(name);}
         }
         System.out.println("-----");
+    }
+
+    public List<String> commonNamesSetList(List<Employee> department1, List<Employee> department2){
+        String line = "-";
+        System.out.println("Common first names between departments: \n" + line.repeat(30));
+
+        Set<String> uniqueNames = department1.stream().map(Employee::getFirstName).collect(Collectors.toSet());
+        return department2.stream().map(Employee::getFirstName).distinct().filter(uniqueNames::contains).toList();
     }
 
 }
